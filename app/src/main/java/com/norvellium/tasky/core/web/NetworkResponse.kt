@@ -1,4 +1,4 @@
-package com.norvellium.tasky.web
+package com.norvellium.tasky.core.web
 
 import java.io.IOException
 

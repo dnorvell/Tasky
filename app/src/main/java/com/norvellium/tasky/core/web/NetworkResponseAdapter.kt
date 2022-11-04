@@ -1,4 +1,4 @@
-package com.norvellium.tasky.web
+package com.norvellium.tasky.core.web
 
 import okhttp3.ResponseBody
 import retrofit2.Call

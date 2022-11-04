@@ -1,11 +1,11 @@
 package com.norvellium.tasky.repository
 
-import com.norvellium.tasky.web.TaskyApi
+import com.norvellium.tasky.core.web.TaskyApi
 
 class AuthRepositoryImpl(
     val api: TaskyApi
 ) : AuthRepository {
-    override fun checkAuthentication() {
-        
+    override fun authenticate(token: String) {
+//        api.checkAuthentication()
     }
 }

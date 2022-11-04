@@ -1,13 +1,15 @@
 package com.norvellium.tasky.di
 
-import android.app.Application
 import android.content.Context
+import com.norvellium.tasky.BuildConfig
+import com.norvellium.tasky.core.web.ApiKeyInterceptor
 import com.norvellium.tasky.preferences.TokenPreferences
 import com.norvellium.tasky.preferences.TokenPreferencesImpl
 import com.norvellium.tasky.repository.AuthRepository
 import com.norvellium.tasky.repository.AuthRepositoryImpl
-import com.norvellium.tasky.web.NetworkResponseAdapterFactory
-import com.norvellium.tasky.web.TaskyApi
+import com.norvellium.tasky.core.web.NetworkResponseAdapterFactory
+import com.norvellium.tasky.core.web.TaskyApi
+import com.norvellium.tasky.core.web.TokenInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,6 +17,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -26,19 +29,32 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideTaskyApi(): TaskyApi {
+    fun provideTokenInterceptor(tokenPreferences: TokenPreferences): TokenInterceptor {
+        return TokenInterceptor(tokenPreferences)
+    }
 
-        val authToken = "" // TODO
+    @Provides
+    @Singleton
+    fun provideApiKeyInterceptor(): ApiKeyInterceptor {
+        return ApiKeyInterceptor(BuildConfig.API_KEY)
+    }
 
-        val client = OkHttpClient.Builder().addInterceptor { chain ->
-            val request: Request =
-                chain.request().newBuilder()
-                    .addHeader("x-api-key", TaskyApi.API_KEY)
-                    .addHeader("Authorization", "Bearer $authToken")
-                    .build()
-            chain.proceed(request)
-        }.build()
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(
+        tokenInterceptor: TokenInterceptor,
+        apiKeyInterceptor: ApiKeyInterceptor
+    ): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY})
+            .addInterceptor(apiKeyInterceptor)
+            .addInterceptor(tokenInterceptor)
+            .build()
+    }
 
+    @Provides
+    @Singleton
+    fun provideTaskyApi(client: OkHttpClient): TaskyApi {
         return Retrofit.Builder()
             .baseUrl(TaskyApi.BASE_URL)
             .client(client)

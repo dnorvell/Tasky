@@ -1,5 +1,5 @@
 package com.norvellium.tasky.repository
 
 interface AuthRepository {
-    fun checkAuthentication()
+    fun authenticate(token: String)
 }

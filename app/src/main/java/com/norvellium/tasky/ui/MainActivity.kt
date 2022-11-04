@@ -1,11 +1,10 @@
-package com.norvellium.tasky
+package com.norvellium.tasky.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.navigation.findNavController
-import com.norvellium.tasky.ui.login.LoginFragment
+import com.norvellium.tasky.R
 import com.norvellium.tasky.ui.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

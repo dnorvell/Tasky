@@ -1,4 +1,4 @@
-package com.norvellium.tasky.web
+package com.norvellium.tasky.core.web
 
 import com.norvellium.tasky.BuildConfig
 import com.norvellium.tasky.data.remote.LoginResponse
@@ -20,7 +20,7 @@ interface TaskyApi {
     suspend fun login(): Response<LoginResponse>
 
     @GET("authenticate")
-    suspend fun checkAuthentication()
+    suspend fun authenticate()
 
     @GET("logout")
     suspend fun logout()
