@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Tasky</string>
+
+    <!-- Screens -->
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+
+    <!-- Login Screen -->
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log In</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign Up</string>
+
+    <!-- Register Screen -->
+    <string name="create_your_account">Create your account</string>
+    <string name="name">Name</string>
+    <string name="get_started">Get Started</string>
+
 </resources>
