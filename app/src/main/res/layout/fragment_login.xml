@@ -17,7 +17,7 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
+                style="@style/Theme.Tasky.Styled.TextView.Inter.Regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -41,18 +41,23 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/et_email_address"
                     style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/email_address" />
+                    android:hint="@string/email_address"
+                    android:inputType="textEmailAddress" />
 
                 <EditText
+                    android:id="@+id/et_password"
                     style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/password" />
+                    android:hint="@string/password"
+                    android:inputType="textPassword" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_login"
                     style="@style/Theme.Tasky.Styled.Button.Inter.Regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -61,27 +66,34 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="30dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:orientation="horizontal">
 
                 <TextView
-                    style="@style/Theme.BunkPolice.Styled.TextView.Inter.Regular"
+                    style="@style/Theme.Tasky.Styled.TextView.Inter.Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:text="@string/dont_have_an_account"
                     android:textAllCaps="true"
                     android:textColor="@color/Black" />
 
                 <TextView
-                    style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
+                    style="@style/Theme.Tasky.Styled.TextView.Inter.Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:text="@string/sign_up"
                     android:textAllCaps="true"
                     android:textColor="@color/Blue" />

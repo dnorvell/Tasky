@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.BunkPolice.Styled.TextView.Inter.Regular" parent="android:Widget.TextView">
+    <style name="Theme.Tasky.Styled.TextView.Inter.Regular" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/inter_regular</item>
     </style>
 

@@ -1,7 +1,9 @@
 package com.norvellium.tasky.core.validation
 
+import androidx.core.util.PatternsCompat
+
 class ValidateEmail {
     fun validate(email: String): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        return PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()
     }
 }

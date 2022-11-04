@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_nav_login_to_nav_register"
-            app:destination="@id/nav_register" />
+            app:destination="@id/nav_register"
+            app:popUpTo="@layout/fragment_login"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
@@ -20,9 +22,6 @@
         android:name="com.norvellium.tasky.ui.register.RegisterFragment"
         android:label="@string/register"
         tools:layout="@layout/fragment_register">
-        <action
-            android:id="@+id/action_nav_register_to_nav_login"
-            app:destination="@id/nav_login" />
     </fragment>
 
 

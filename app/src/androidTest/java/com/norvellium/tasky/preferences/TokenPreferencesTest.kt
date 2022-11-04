@@ -1,19 +1,13 @@
 package com.norvellium.tasky.preferences
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import dagger.hilt.android.testing.HiltAndroidTest
 
 import org.junit.Test
-import org.junit.runner.RunWith
 
-import org.junit.Assert.*
 import com.google.common.truth.Truth.assertThat
 import com.norvellium.tasky.TestCoroutineRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import javax.inject.Inject
@@ -42,7 +36,7 @@ class TokenPreferencesTest {
     }
 
     @Test
-    fun itCanReadandWriteToken() = testCoroutineRule.runTest {
+    fun it_can_read_and_write_token() = testCoroutineRule.runTest {
         assertThat(tokenPrefs.readToken()).isEqualTo(null)
         tokenPrefs.writeToken("test")
         assertThat(tokenPrefs.readToken()).isEqualTo("test")
