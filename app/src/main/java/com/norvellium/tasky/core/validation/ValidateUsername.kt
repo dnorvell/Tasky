@@ -12,7 +12,7 @@ class ValidateUsername(context: Context) {
         if (username.length !in 4..50) {
             return ValidationResult(
                 false,
-                resources.getString(R.string.validation_error_username_invalid_length)
+                resources?.getString(R.string.validation_error_username_invalid_length)
             )
         }
         return ValidationResult(true)

@@ -9,23 +9,23 @@ class ValidatePassword(context: Context) {
 
     fun validate(password: String): ValidationResult {
         if (password.isBlank()) {
-            return ValidationResult(false, resources.getString(R.string.validation_error_password_empty))
+            return ValidationResult(false, resources?.getString(R.string.validation_error_password_empty))
         }
         // more than 8 characters
         if (password.length < 8) {
-            return ValidationResult(false, resources.getString(R.string.validation_error_password_length))
+            return ValidationResult(false, resources?.getString(R.string.validation_error_password_length))
         }
         // at least one lowercase
         if (!password.contains(Regex("[a-z]"))) {
-            return ValidationResult(false, resources.getString(R.string.validation_error_password_no_lowercase))
+            return ValidationResult(false, resources?.getString(R.string.validation_error_password_no_lowercase))
         }
         // at least one number
         if (!password.contains(Regex("[0-9]"))) {
-            return ValidationResult(false, resources.getString(R.string.validation_error_password_no_number))
+            return ValidationResult(false, resources?.getString(R.string.validation_error_password_no_number))
         }
         // at least one uppercase
-        if (password.contains(Regex("[A-Z]"))) {
-            return ValidationResult(false, resources.getString(R.string.validation_error_password_no_uppercase))
+        if (!password.contains(Regex("[A-Z]"))) {
+            return ValidationResult(false, resources?.getString(R.string.validation_error_password_no_uppercase))
         }
         return ValidationResult(true)
     }

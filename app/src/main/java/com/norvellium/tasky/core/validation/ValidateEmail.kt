@@ -13,7 +13,7 @@ class ValidateEmail(context: Context) {
             return ValidationResult(false, resources.getString(R.string.validation_error_email_blank))
         }
         if (!PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()) {
-            return ValidationResult(false, resources.getString(R.string.validation_error_email_invalid))
+            return ValidationResult(false, resources?.getString(R.string.validation_error_email_invalid))
         }
         return ValidationResult(true)
     }
