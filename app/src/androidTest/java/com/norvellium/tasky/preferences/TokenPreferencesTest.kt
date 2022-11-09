@@ -8,6 +8,7 @@ import com.google.common.truth.Truth.assertThat
 import com.norvellium.tasky.TestCoroutineRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import javax.inject.Inject
@@ -40,6 +41,11 @@ class TokenPreferencesTest {
         assertThat(tokenPrefs.readToken()).isEqualTo(null)
         tokenPrefs.writeToken("test")
         assertThat(tokenPrefs.readToken()).isEqualTo("test")
+
+    }
+
+    @After
+    fun tearDown() {
         tokenPrefs.clearToken()
         assertThat(tokenPrefs.readToken()).isEqualTo(null)
     }

@@ -1,8 +1,11 @@
 package com.norvellium.tasky.core.web
 
 import com.norvellium.tasky.BuildConfig
+import com.norvellium.tasky.data.remote.LoginBody
 import com.norvellium.tasky.data.remote.LoginResponse
+import com.norvellium.tasky.data.remote.RegistrationBody
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
@@ -14,15 +17,15 @@ interface TaskyApi {
     }
 
     @POST("register")
-    suspend fun register(): Response<Void>
+    suspend fun register(@Body registrationDetails: RegistrationBody): NetworkResponse<Void, ResponseError>
 
     @POST("login")
-    suspend fun login(): Response<LoginResponse>
+    suspend fun login(@Body credentials: LoginBody): NetworkResponse<LoginResponse, ResponseError>
 
     @GET("authenticate")
-    suspend fun authenticate()
+    suspend fun authenticate(): NetworkResponse<Void, ResponseError>
 
     @GET("logout")
-    suspend fun logout()
+    suspend fun logout(): NetworkResponse<Void, ResponseError>
 
 }

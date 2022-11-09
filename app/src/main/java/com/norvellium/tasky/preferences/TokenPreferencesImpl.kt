@@ -13,6 +13,8 @@ class TokenPreferencesImpl(val context: Context): TokenPreferences {
 
     private var prefs: SharedPreferences = context.getSharedPreferences(key, Context.MODE_PRIVATE)
 
+    // TODO handle token encryption
+
     override fun readToken(): String? {
         return prefs.getString(key, null)
     }
@@ -23,10 +25,10 @@ class TokenPreferencesImpl(val context: Context): TokenPreferences {
         return editor.commit()
     }
 
-    override fun clearToken() {
+    override fun clearToken(): Boolean {
         val editor = prefs.edit()
         editor.remove(key)
-        editor.apply()
+        return editor.commit()
     }
 
 //    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = name)

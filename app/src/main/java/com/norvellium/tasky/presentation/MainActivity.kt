@@ -1,4 +1,4 @@
-package com.norvellium.tasky.ui
+package com.norvellium.tasky.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,11 +16,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen().apply {
             setKeepOnScreenCondition {
-//                viewModel.isAuthenticated.value
-                false
+                viewModel.isAuthenticated.value
             }
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // TODO send to agenda screen if authenticated
     }
 }

@@ -1,5 +1,7 @@
 package com.norvellium.tasky.ui.main
 
+import android.util.Log
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.norvellium.tasky.preferences.TokenPreferences
@@ -13,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val tokenPreferences: TokenPreferences,
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _isCheckingAuth = MutableStateFlow(true)
@@ -25,9 +28,11 @@ class MainViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             _isCheckingAuth.value = true
-            val token = tokenPreferences.readToken()
-//            authRepository.checkAuthentication()
-            // TODO read token
+            tokenPreferences.readToken()?.let { token ->
+                Log.v("test", "authenticating")
+                _isAuthenticated.value = authRepository.authenticate(token)
+                Log.v("test", "authenticated")
+            }
             _isCheckingAuth.value = false
         }
     }

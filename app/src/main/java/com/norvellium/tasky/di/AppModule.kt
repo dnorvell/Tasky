@@ -2,6 +2,9 @@ package com.norvellium.tasky.di
 
 import android.content.Context
 import com.norvellium.tasky.BuildConfig
+import com.norvellium.tasky.core.validation.ValidateEmail
+import com.norvellium.tasky.core.validation.ValidatePassword
+import com.norvellium.tasky.core.validation.ValidateUsername
 import com.norvellium.tasky.core.web.ApiKeyInterceptor
 import com.norvellium.tasky.preferences.TokenPreferences
 import com.norvellium.tasky.preferences.TokenPreferencesImpl
@@ -10,6 +13,8 @@ import com.norvellium.tasky.repository.AuthRepositoryImpl
 import com.norvellium.tasky.core.web.NetworkResponseAdapterFactory
 import com.norvellium.tasky.core.web.TaskyApi
 import com.norvellium.tasky.core.web.TokenInterceptor
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,6 +31,24 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Provides
+    @Singleton
+    fun provideValidateEmail(@ApplicationContext context: Context): ValidateEmail {
+        return ValidateEmail(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideValidatePassword(@ApplicationContext context: Context): ValidatePassword {
+        return ValidatePassword(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideValidateUsername(@ApplicationContext context: Context): ValidateUsername {
+        return ValidateUsername(context)
+    }
 
     @Provides
     @Singleton
@@ -55,11 +78,16 @@ object AppModule {
     @Provides
     @Singleton
     fun provideTaskyApi(client: OkHttpClient): TaskyApi {
+
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+
         return Retrofit.Builder()
             .baseUrl(TaskyApi.BASE_URL)
             .client(client)
             .addCallAdapterFactory(NetworkResponseAdapterFactory())
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
             .create(TaskyApi::class.java)
     }
