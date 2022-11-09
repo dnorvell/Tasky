@@ -8,6 +8,9 @@ class ValidatePassword(context: Context) {
     private val resources = context.resources
 
     fun validate(password: String): ValidationResult {
+        if (password.isBlank()) {
+            return ValidationResult(false, resources.getString(R.string.validation_error_password_empty))
+        }
         // more than 8 characters
         if (password.length < 8) {
             return ValidationResult(false, resources.getString(R.string.validation_error_password_length))

@@ -5,13 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.norvellium.tasky.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(), CoroutineScope by MainScope() {
 
     companion object {
         fun newInstance() = LoginFragment()
@@ -21,8 +27,7 @@ class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -38,9 +43,7 @@ class LoginFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-//        binding.btnLogin.setOnClickListener {
-//            viewModel.login()
-//        }
+        // TODO listen for events from view model
 
         binding.llRegister.setOnClickListener {
             val action = LoginFragmentDirections.actionNavLoginToNavRegister()

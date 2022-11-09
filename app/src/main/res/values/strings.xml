@@ -21,6 +21,7 @@
     <!-- Validation -->
     <string name="validation_error_email_blank">The email can\'t be blank</string>
     <string name="validation_error_email_invalid">This is not a valid email address</string>
+    <string name="validation_error_password_empty">Password is empty</string>
     <string name="validation_error_password_length">Password must be greater than 8 characters</string>
     <string name="validation_error_password_no_lowercase">Password must have at least one lowercase character</string>
     <string name="validation_error_password_no_number">Password must contain at least one number</string>
