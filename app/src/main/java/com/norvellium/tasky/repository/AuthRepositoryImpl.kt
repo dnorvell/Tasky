@@ -1,6 +1,6 @@
 package com.norvellium.tasky.repository
 
-import com.norvellium.tasky.core.web.NetworkResponse
+import com.norvellium.tasky.core.web.response.NetworkResponse
 import com.norvellium.tasky.core.web.TaskyApi
 import com.norvellium.tasky.data.remote.LoginBody
 import com.norvellium.tasky.data.remote.LoginResponse

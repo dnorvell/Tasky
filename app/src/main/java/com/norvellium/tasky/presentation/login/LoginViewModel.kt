@@ -1,6 +1,5 @@
-package com.norvellium.tasky.ui.login
+package com.norvellium.tasky.presentation.login
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

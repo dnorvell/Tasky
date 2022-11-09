@@ -5,14 +5,14 @@ import com.norvellium.tasky.BuildConfig
 import com.norvellium.tasky.core.validation.ValidateEmail
 import com.norvellium.tasky.core.validation.ValidatePassword
 import com.norvellium.tasky.core.validation.ValidateUsername
-import com.norvellium.tasky.core.web.ApiKeyInterceptor
+import com.norvellium.tasky.core.web.interceptor.ApiKeyInterceptor
 import com.norvellium.tasky.preferences.TokenPreferences
 import com.norvellium.tasky.preferences.TokenPreferencesImpl
 import com.norvellium.tasky.repository.AuthRepository
 import com.norvellium.tasky.repository.AuthRepositoryImpl
-import com.norvellium.tasky.core.web.NetworkResponseAdapterFactory
+import com.norvellium.tasky.core.web.response.NetworkResponseAdapterFactory
 import com.norvellium.tasky.core.web.TaskyApi
-import com.norvellium.tasky.core.web.TokenInterceptor
+import com.norvellium.tasky.core.web.interceptor.TokenInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -21,7 +21,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

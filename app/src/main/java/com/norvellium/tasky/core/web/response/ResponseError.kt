@@ -1,4 +1,4 @@
-package com.norvellium.tasky.core.web
+package com.norvellium.tasky.core.web.response
 
 import com.squareup.moshi.JsonClass
 

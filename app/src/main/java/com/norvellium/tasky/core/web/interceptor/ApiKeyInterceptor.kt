@@ -1,4 +1,4 @@
-package com.norvellium.tasky.core.web
+package com.norvellium.tasky.core.web.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response

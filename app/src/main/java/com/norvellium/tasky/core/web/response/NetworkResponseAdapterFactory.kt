@@ -1,4 +1,4 @@
-package com.norvellium.tasky.core.web
+package com.norvellium.tasky.core.web.response
 
 import retrofit2.Call
 import retrofit2.CallAdapter

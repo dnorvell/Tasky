@@ -1,4 +1,4 @@
-package com.norvellium.tasky.ui.login
+package com.norvellium.tasky.presentation.login
 
 data class LoginState(
     var email: String = "",

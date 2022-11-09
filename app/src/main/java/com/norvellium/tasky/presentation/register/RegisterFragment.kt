@@ -1,4 +1,4 @@
-package com.norvellium.tasky.ui.register
+package com.norvellium.tasky.presentation.register
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,11 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.norvellium.tasky.R
-import com.norvellium.tasky.databinding.FragmentLoginBinding
 import com.norvellium.tasky.databinding.FragmentRegisterBinding
-import com.norvellium.tasky.ui.login.LoginFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

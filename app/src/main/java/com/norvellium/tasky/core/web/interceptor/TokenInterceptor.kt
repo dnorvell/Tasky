@@ -1,4 +1,4 @@
-package com.norvellium.tasky.core.web
+package com.norvellium.tasky.core.web.interceptor
 
 import com.norvellium.tasky.preferences.TokenPreferences
 import okhttp3.Interceptor
