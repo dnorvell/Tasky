@@ -41,8 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/rounded"
-                android:orientation="vertical"
-                android:padding="15dp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -52,28 +51,29 @@
                     <EditText
                         android:id="@+id/et_email_address"
                         style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
-                        android:text="@={viewModel.state.email}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/email_address"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.state.email}" />
 
                     <EditText
                         android:id="@+id/et_password"
                         style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
-                        android:text="@={viewModel.state.password}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/password"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        android:text="@={viewModel.state.password}" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_login"
-                        android:onClick="@{(view) -> viewModel.login()}"
                         style="@style/Theme.Tasky.Styled.Button.Inter.Regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
                         android:background="@drawable/rounded_button"
+                        android:onClick="@{(view) -> viewModel.login()}"
                         android:text="@string/log_in" />
                 </LinearLayout>
 

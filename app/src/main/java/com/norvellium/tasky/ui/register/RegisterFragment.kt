@@ -11,7 +11,9 @@ import com.norvellium.tasky.R
 import com.norvellium.tasky.databinding.FragmentLoginBinding
 import com.norvellium.tasky.databinding.FragmentRegisterBinding
 import com.norvellium.tasky.ui.login.LoginFragmentDirections
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
     companion object {
