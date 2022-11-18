@@ -13,7 +13,6 @@ import com.norvellium.tasky.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -44,6 +43,26 @@ class LoginFragment : Fragment(), CoroutineScope by MainScope() {
         binding.viewModel = viewModel
 
         // TODO listen for events from view model
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.events.collect { event ->
+                when (event) {
+                    is LoginEvent.ValidationSuccess -> {
+                        Toast.makeText(
+                            requireContext(),
+                            "time to login",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    is LoginEvent.ValidationFailed -> {
+                        Toast.makeText(
+                            requireContext(),
+                            event.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }
 
         binding.llRegister.setOnClickListener {
             val action = LoginFragmentDirections.actionNavLoginToNavRegister()
