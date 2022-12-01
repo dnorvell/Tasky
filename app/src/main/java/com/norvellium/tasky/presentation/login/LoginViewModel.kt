@@ -1,5 +1,6 @@
 package com.norvellium.tasky.presentation.login
 
+import android.text.Editable
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -30,18 +31,31 @@ class LoginViewModel @Inject constructor(
     private val eventChannel = Channel<LoginEvent>()
     val events = eventChannel.receiveAsFlow()
 
-    val loginState = combine(email, password) { email, password ->
+    //    val loginState = combine(email, password) { email, password ->
+    private val _loginState = MutableStateFlow(
         LoginState(
-            email = email,
-            password = password,
-            isValidEmail = validateEmail.validate(email).successful,
-            isValidPassword = validatePassword.validate(password).successful
+//            email = email,
+//            password = password,
+//            isValidEmail = validateEmail.validate(email).successful,
+//            isValidPassword = validatePassword.validate(password).successful
         )
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), LoginState())
+    )
+//    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), LoginState())
+
+    val loginState = _loginState.asStateFlow()
+
+
+    fun checkIfEmailValid(text: Editable) {
+        _loginState.update {
+            it.copy(
+            email = text.toString(),
+            isValidEmail = validateEmail.validate(text.toString()).successful)
+        }
+    }
 
     fun login() {
-        val emailResult = validateEmail.validate(loginState.value.email)
-        val passwordResult = validatePassword.validate(loginState.value.password)
+        val emailResult = validateEmail.validate(loginState.value.email!!)
+        val passwordResult = validatePassword.validate(loginState.value.password!!)
 
         val hasError = listOf(emailResult, passwordResult).any { !it.successful }
 

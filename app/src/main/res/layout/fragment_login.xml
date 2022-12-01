@@ -54,13 +54,30 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <EditText
-                            android:id="@+id/et_email_address"
-                            style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
+                        <FrameLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/email_address"
-                            android:inputType="textEmailAddress"/>
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/et_email_address"
+                                style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/email_address"
+                                android:inputType="textEmailAddress"/>
+
+                            <ImageView
+                                android:layout_gravity="end|center_vertical"
+                                android:id="@+id/ivCheck"
+                                android:elevation="1dp"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/ic_check"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"/>
+
+                        </FrameLayout>
+
+
 
                         <EditText
                             android:id="@+id/et_password"
