@@ -6,6 +6,7 @@ import org.junit.Test
 
 import com.google.common.truth.Truth.assertThat
 import com.norvellium.tasky.TestCoroutineRule
+import com.norvellium.tasky.auth.data.local.TokenPreferences
 import dagger.hilt.android.testing.HiltAndroidRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.After
@@ -41,13 +42,16 @@ class TokenPreferencesTest {
         assertThat(tokenPrefs.readToken()).isEqualTo(null)
         tokenPrefs.writeToken("test")
         assertThat(tokenPrefs.readToken()).isEqualTo("test")
+    }
 
+    @Test
+    fun it_can_clear_token() = testCoroutineRule.runTest {
+        tokenPrefs.clearToken()
+        assertThat(tokenPrefs.readToken()).isEqualTo(null)
     }
 
     @After
     fun tearDown() {
         tokenPrefs.clearToken()
-        assertThat(tokenPrefs.readToken()).isEqualTo(null)
     }
-
 }

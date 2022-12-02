@@ -3,30 +3,26 @@ package com.norvellium.tasky.core.validation
 import android.content.Context
 import com.norvellium.tasky.R
 
-class ValidatePassword(context: Context) {
+class ValidatePassword() {
 
-    private val resources = context.resources
-
-    fun validate(password: String): ValidationResult {
-        if (password.isBlank()) {
-            return ValidationResult(false, resources?.getString(R.string.validation_error_password_empty))
+    fun validate(password: String?): ValidationResult {
+        if (password.isNullOrBlank()) {
+            return ValidationResult.PASSWORD_BLANK
         }
-        // more than 8 characters
         if (password.length < 8) {
-            return ValidationResult(false, resources?.getString(R.string.validation_error_password_length))
+            return ValidationResult.PASSWORD_TOO_SHORT
         }
-        // at least one lowercase
-        if (!password.contains(Regex("[a-z]"))) {
-            return ValidationResult(false, resources?.getString(R.string.validation_error_password_no_lowercase))
+        if (!password.any { it.isLowerCase() }) {
+            return ValidationResult.PASSWORD_NO_LOWERCASE
         }
         // at least one number
-        if (!password.contains(Regex("[0-9]"))) {
-            return ValidationResult(false, resources?.getString(R.string.validation_error_password_no_number))
+        if (!password.any { it.isDigit() }) {
+            return ValidationResult.PASSWORD_NO_NUMBER
         }
         // at least one uppercase
-        if (!password.contains(Regex("[A-Z]"))) {
-            return ValidationResult(false, resources?.getString(R.string.validation_error_password_no_uppercase))
+        if (!password.any { it.isUpperCase() }) {
+            return ValidationResult.PASSWORD_NO_UPPERCASE
         }
-        return ValidationResult(true)
+        return ValidationResult.SUCCESSFUL
     }
 }

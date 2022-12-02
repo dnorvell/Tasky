@@ -1,13 +1,7 @@
-package com.norvellium.tasky.preferences
+package com.norvellium.tasky.auth.data.local
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
-import kotlinx.coroutines.flow.first
 
 class TokenPreferencesImpl(val context: Context): TokenPreferences {
 

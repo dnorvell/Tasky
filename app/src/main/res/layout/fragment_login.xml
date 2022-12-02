@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.norvellium.tasky.presentation.login.LoginViewModel" />
+            type="com.norvellium.tasky.auth.presentation.login.LoginViewModel" />
     </data>
 
     <ScrollView
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/black"
-            tools:context=".presentation.login.LoginFragment">
+            tools:context=".auth.presentation.login.LoginFragment">
 
             <LinearLayout
                 android:layout_width="match_parent"

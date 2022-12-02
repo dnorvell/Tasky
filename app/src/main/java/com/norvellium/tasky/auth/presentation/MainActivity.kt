@@ -1,4 +1,4 @@
-package com.norvellium.tasky.presentation
+package com.norvellium.tasky.auth.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

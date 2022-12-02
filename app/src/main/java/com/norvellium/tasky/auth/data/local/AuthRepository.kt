@@ -1,6 +1,6 @@
-package com.norvellium.tasky.repository
+package com.norvellium.tasky.auth.data.local
 
-import com.norvellium.tasky.data.remote.LoginResponse
+import com.norvellium.tasky.auth.data.remote.LoginResponse
 
 interface AuthRepository {
     suspend fun login(email: String, password: String): LoginResponse

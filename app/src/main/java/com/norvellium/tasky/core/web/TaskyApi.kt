@@ -3,9 +3,9 @@ package com.norvellium.tasky.core.web
 import com.norvellium.tasky.BuildConfig
 import com.norvellium.tasky.core.web.response.NetworkResponse
 import com.norvellium.tasky.core.web.response.ResponseError
-import com.norvellium.tasky.data.remote.LoginBody
-import com.norvellium.tasky.data.remote.LoginResponse
-import com.norvellium.tasky.data.remote.RegistrationBody
+import com.norvellium.tasky.auth.data.remote.LoginBody
+import com.norvellium.tasky.auth.data.remote.LoginResponse
+import com.norvellium.tasky.auth.data.remote.RegistrationBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

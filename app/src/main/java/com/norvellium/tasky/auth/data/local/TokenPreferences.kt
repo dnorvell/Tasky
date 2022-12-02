@@ -1,4 +1,4 @@
-package com.norvellium.tasky.preferences
+package com.norvellium.tasky.auth.data.local
 
 interface TokenPreferences {
     fun readToken(): String?

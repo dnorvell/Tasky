@@ -1,4 +1,4 @@
-package com.norvellium.tasky.data.remote
+package com.norvellium.tasky.auth.data.remote
 
 import com.squareup.moshi.JsonClass
 import java.io.Serializable

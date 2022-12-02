@@ -1,4 +1,4 @@
-package com.norvellium.tasky.presentation.login
+package com.norvellium.tasky.auth.presentation.login
 
 data class LoginState(
     val email: String? = null,

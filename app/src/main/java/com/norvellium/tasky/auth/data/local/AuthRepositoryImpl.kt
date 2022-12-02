@@ -1,9 +1,9 @@
-package com.norvellium.tasky.repository
+package com.norvellium.tasky.auth.data.local
 
 import com.norvellium.tasky.core.web.response.NetworkResponse
 import com.norvellium.tasky.core.web.TaskyApi
-import com.norvellium.tasky.data.remote.LoginBody
-import com.norvellium.tasky.data.remote.LoginResponse
+import com.norvellium.tasky.auth.data.remote.LoginBody
+import com.norvellium.tasky.auth.data.remote.LoginResponse
 import java.io.IOException
 
 class AuthRepositoryImpl(

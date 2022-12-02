@@ -1,11 +1,11 @@
-package com.norvellium.tasky.presentation
+package com.norvellium.tasky.auth.presentation
 
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.norvellium.tasky.preferences.TokenPreferences
-import com.norvellium.tasky.repository.AuthRepository
+import com.norvellium.tasky.auth.data.local.TokenPreferences
+import com.norvellium.tasky.auth.data.local.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

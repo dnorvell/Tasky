@@ -1,4 +1,4 @@
-package com.norvellium.tasky.application
+package com.norvellium.tasky.core.application
 
 import android.app.Application
 import dagger.Provides

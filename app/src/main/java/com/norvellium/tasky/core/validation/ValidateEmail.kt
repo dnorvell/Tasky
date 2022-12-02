@@ -1,20 +1,18 @@
 package com.norvellium.tasky.core.validation
 
-import android.content.Context
-import androidx.core.util.PatternsCompat
-import com.norvellium.tasky.R
+import javax.inject.Inject
 
-class ValidateEmail(context: Context) {
+class ValidateEmail @Inject constructor(
+    private val emailPatternValidator: EmailPatternValidatorImpl
+) {
 
-    private val resources = context.resources
-
-    fun validate(email: String): ValidationResult {
-        if (email.isBlank()) {
-            return ValidationResult(false, resources.getString(R.string.validation_error_email_blank))
+    fun validate(email: String?): ValidationResult {
+        if (email.isNullOrBlank()) {
+            return ValidationResult.EMAIL_BLANK
         }
-        if (!PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()) {
-            return ValidationResult(false, resources?.getString(R.string.validation_error_email_invalid))
+        if (!emailPatternValidator.isValidEmailPattern(email)) {
+            return ValidationResult.EMAIL_INVALID
         }
-        return ValidationResult(true)
+        return ValidationResult.SUCCESSFUL
     }
 }

@@ -1,4 +1,4 @@
-package com.norvellium.tasky.data.remote
+package com.norvellium.tasky.auth.data.remote
 
 data class RegistrationBody(
     val fullName: String,

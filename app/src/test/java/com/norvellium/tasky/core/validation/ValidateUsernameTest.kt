@@ -14,22 +14,22 @@ class ValidateUsernameTest {
 
     @Before
     fun setup() {
-        validateUsername = ValidateUsername(mock(Context::class.java))
+        validateUsername = ValidateUsername()
     }
 
     @Test
     fun proper_user_name_validates() {
-        Truth.assertThat(validateUsername.validate("drewn").successful).isTrue()
+        Truth.assertThat(validateUsername.validate("drewn") == ValidationResult.SUCCESSFUL).isTrue()
     }
 
     @Test
     fun username_must_be_at_least_4_characters() {
-        Truth.assertThat(validateUsername.validate("dre").successful).isFalse()
+        Truth.assertThat(validateUsername.validate("dre") == ValidationResult.USERNAME_INVALID).isTrue()
     }
 
     @Test
     fun username_cant_be_longer_than_50_characters() {
-        Truth.assertThat(validateUsername.validate("thisisareallylongusernamethatissolongthatitisoverfiftycharacters").successful)
-            .isFalse()
+        Truth.assertThat(validateUsername.validate("thisisareallylongusernamethatissolongthatitisoverfiftycharacters") == ValidationResult.USERNAME_INVALID)
+            .isTrue()
     }
 }

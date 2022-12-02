@@ -1,7 +1,7 @@
 package com.norvellium.tasky.di
 
 import android.content.Context
-import com.norvellium.tasky.preferences.TokenPreferencesImpl
+import com.norvellium.tasky.auth.data.local.TokenPreferencesImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

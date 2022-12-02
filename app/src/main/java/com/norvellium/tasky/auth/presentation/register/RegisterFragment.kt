@@ -1,4 +1,4 @@
-package com.norvellium.tasky.presentation.register
+package com.norvellium.tasky.auth.presentation.register
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

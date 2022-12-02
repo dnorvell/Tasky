@@ -19,7 +19,6 @@ class NetworkResponseAdapterFactory : CallAdapter.Factory() {
             return null
         }
 
-        // check first that the return type is `ParameterizedType`
         check(returnType is ParameterizedType) {
             "return type must be parameterized as Call<NetworkResponse<<Foo>> or Call<NetworkResponse<out Foo>>"
         }

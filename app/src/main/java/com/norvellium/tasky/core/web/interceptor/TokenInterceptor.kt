@@ -1,6 +1,6 @@
 package com.norvellium.tasky.core.web.interceptor
 
-import com.norvellium.tasky.preferences.TokenPreferences
+import com.norvellium.tasky.auth.data.local.TokenPreferences
 import okhttp3.Interceptor
 import okhttp3.Response
 

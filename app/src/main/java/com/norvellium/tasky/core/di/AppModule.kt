@@ -1,15 +1,16 @@
-package com.norvellium.tasky.di
+package com.norvellium.tasky.core.di
 
 import android.content.Context
 import com.norvellium.tasky.BuildConfig
+import com.norvellium.tasky.core.validation.EmailPatternValidatorImpl
 import com.norvellium.tasky.core.validation.ValidateEmail
 import com.norvellium.tasky.core.validation.ValidatePassword
 import com.norvellium.tasky.core.validation.ValidateUsername
 import com.norvellium.tasky.core.web.interceptor.ApiKeyInterceptor
-import com.norvellium.tasky.preferences.TokenPreferences
-import com.norvellium.tasky.preferences.TokenPreferencesImpl
-import com.norvellium.tasky.repository.AuthRepository
-import com.norvellium.tasky.repository.AuthRepositoryImpl
+import com.norvellium.tasky.auth.data.local.TokenPreferences
+import com.norvellium.tasky.auth.data.local.TokenPreferencesImpl
+import com.norvellium.tasky.auth.data.local.AuthRepository
+import com.norvellium.tasky.auth.data.local.AuthRepositoryImpl
 import com.norvellium.tasky.core.web.response.NetworkResponseAdapterFactory
 import com.norvellium.tasky.core.web.TaskyApi
 import com.norvellium.tasky.core.web.interceptor.TokenInterceptor
@@ -33,20 +34,20 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideValidateEmail(@ApplicationContext context: Context): ValidateEmail {
-        return ValidateEmail(context)
+    fun provideValidateEmail(): ValidateEmail {
+        return ValidateEmail(EmailPatternValidatorImpl())
     }
 
     @Provides
     @Singleton
-    fun provideValidatePassword(@ApplicationContext context: Context): ValidatePassword {
-        return ValidatePassword(context)
+    fun provideValidatePassword(): ValidatePassword {
+        return ValidatePassword()
     }
 
     @Provides
     @Singleton
-    fun provideValidateUsername(@ApplicationContext context: Context): ValidateUsername {
-        return ValidateUsername(context)
+    fun provideValidateUsername(): ValidateUsername {
+        return ValidateUsername()
     }
 
     @Provides
@@ -102,5 +103,4 @@ object AppModule {
     fun provideTokenPreferences(@ApplicationContext context: Context): TokenPreferences {
         return TokenPreferencesImpl(context)
     }
-
 }

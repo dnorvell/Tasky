@@ -1,4 +1,4 @@
-package com.norvellium.tasky.presentation.register
+package com.norvellium.tasky.auth.presentation.register
 
 import androidx.lifecycle.ViewModel
 import com.norvellium.tasky.core.validation.ValidateEmail
