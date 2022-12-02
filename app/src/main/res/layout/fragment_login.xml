@@ -1,13 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.login.LoginFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.norvellium.tasky.auth.presentation.login.LoginViewModel" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:fillViewport="true">
 
-</FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            tools:context=".auth.presentation.login.LoginFragment">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Theme.Tasky.Styled.TextView.Inter.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="50dp"
+                        android:text="@string/welcome_back"
+                        android:textColor="@color/white"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rounded"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/et_email_address"
+                                style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/email_address"
+                                android:inputType="textEmailAddress"/>
+
+                            <ImageView
+                                android:layout_gravity="end|center_vertical"
+                                android:id="@+id/ivCheck"
+                                android:elevation="1dp"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/ic_check"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"/>
+
+                        </FrameLayout>
+
+
+
+                        <EditText
+                            android:id="@+id/et_password"
+                            style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/password"
+                            android:inputType="textPassword"/>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_login"
+                            style="@style/Theme.Tasky.Styled.Button.Inter.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="50dp"
+                            android:background="@drawable/rounded_button"
+                            android:onClick="@{(view) -> viewModel.login()}"
+                            android:text="@string/log_in" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="30dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/Theme.Tasky.Styled.TextView.Inter.Regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:text="@string/dont_have_an_account"
+                            android:textAllCaps="true"
+                            android:textColor="@color/Black" />
+
+                        <TextView
+                            style="@style/Theme.Tasky.Styled.TextView.Inter.Regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:text="@string/sign_up"
+                            android:textAllCaps="true"
+                            android:textColor="@color/Blue" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </FrameLayout>
+    </ScrollView>
+</layout>
