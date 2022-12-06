@@ -37,6 +37,8 @@ class AgendaFragment : Fragment(), CoroutineScope by MainScope() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // This button is just a placeholder to allow logout functionality
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
             findNavController().popBackStack()
