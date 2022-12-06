@@ -4,6 +4,7 @@
     <!-- Screens -->
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="agenda">Agenda</string>
 
     <!-- Login Screen -->
     <string name="welcome_back">Welcome Back!</string>

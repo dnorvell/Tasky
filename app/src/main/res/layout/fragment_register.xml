@@ -47,29 +47,76 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_username"
-                            style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
+                        <FrameLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/name"
-                            android:inputType="textNoSuggestions" />
+                            android:layout_height="wrap_content">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_email_address"
-                            style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/email_address"
-                            android:inputType="textEmailAddress" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_username"
+                                style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/name"
+                                android:inputType="textNoSuggestions" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_password"
-                            style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
+                            <ImageView
+                                android:layout_gravity="end|center_vertical"
+                                android:id="@+id/ivUsernameCheck"
+                                android:elevation="1dp"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/ic_check"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"/>
+
+                        </FrameLayout>
+
+                        <FrameLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/password"
-                            android:inputType="textPassword" />
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_email_address"
+                                style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/email_address"
+                                android:inputType="textEmailAddress" />
+
+                            <ImageView
+                                android:layout_gravity="end|center_vertical"
+                                android:id="@+id/ivEmailCheck"
+                                android:elevation="1dp"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/ic_check"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"/>
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_password"
+                                style="@style/Theme.Tasky.Styled.EditText.Inter.Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/password"
+                                android:inputType="textPassword" />
+
+                            <ImageView
+                                android:layout_gravity="end|center_vertical"
+                                android:id="@+id/ivShowPassword"
+                                android:elevation="1dp"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/ic_show_password"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"/>
+
+                        </FrameLayout>
+
+
                     </LinearLayout>
 
                     <androidx.appcompat.widget.AppCompatButton

@@ -35,7 +35,6 @@ class LoginViewModel @Inject constructor(
     val events = eventChannel.receiveAsFlow()
 
     private val _loginState = MutableStateFlow(LoginState())
-
     val loginState = _loginState.asStateFlow()
 
     fun checkIfEmailValid(text: Editable) {
@@ -90,7 +89,7 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val response = authRepository.login(loginState.value.email!!, loginState.value.password!!)
-                tokenPreferences.writeToken(response.token)
+                response?.let { tokenPreferences.writeToken(it.token) }
                 eventChannel.send(LoginEvent.LoginSucceeded)
             } catch (e: Exception) {
                 eventChannel.send(LoginEvent.LoginFailed(e.message))

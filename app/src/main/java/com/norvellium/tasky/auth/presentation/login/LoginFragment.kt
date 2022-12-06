@@ -49,6 +49,7 @@ class LoginFragment : Fragment(), CoroutineScope by MainScope() {
 
         collectLifecycleFlow(viewModel.loginState) { state ->
             binding.ivCheck.isVisible = state.isValidEmail
+
             if (state.isPasswordVisible) binding.etPassword.transformationMethod = null
             else binding.etPassword.transformationMethod = PasswordTransformationMethod()
             // Move cursor to end when visibility is toggled
@@ -97,12 +98,8 @@ class LoginFragment : Fragment(), CoroutineScope by MainScope() {
                         ).show()
                     }
                     is LoginEvent.LoginSucceeded -> {
-                        Toast.makeText(
-                            requireContext(),
-                            "login time",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        // TODO proceed to agenda screen
+                        val action = LoginFragmentDirections.actionNavLoginToNavAgenda()
+                        findNavController().navigate(action)
                     }
                 }
             }

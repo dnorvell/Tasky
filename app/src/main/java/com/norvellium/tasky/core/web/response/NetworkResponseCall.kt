@@ -31,7 +31,7 @@ internal class NetworkResponseCall<S : Any, E : Any>(
                         // Response is successful but the body is null
                         callback.onResponse(
                             this@NetworkResponseCall,
-                            Response.success(NetworkResponse.UnknownError(Throwable()))
+                            Response.success(NetworkResponse.Success(null))
                         )
                     }
                 } else {
