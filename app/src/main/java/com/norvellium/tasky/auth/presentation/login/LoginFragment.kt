@@ -2,7 +2,9 @@ package com.norvellium.tasky.auth.presentation.login
 
 import android.os.Bundle
 import android.text.Editable
-import android.util.Log
+import android.text.InputType
+import android.text.method.PasswordTransformationMethod
+import android.text.method.TransformationMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +13,13 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.norvellium.tasky.core.presentation.collectLifecycleFlow
 import com.norvellium.tasky.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -49,33 +48,39 @@ class LoginFragment : Fragment(), CoroutineScope by MainScope() {
         super.onViewCreated(view, savedInstanceState)
 
         collectLifecycleFlow(viewModel.loginState) { state ->
-            // This is called whenever loginState changes
-            Log.v("test", state.toString())
             binding.ivCheck.isVisible = state.isValidEmail
+            if (state.isPasswordVisible) binding.etPassword.transformationMethod = null
+            else binding.etPassword.transformationMethod = PasswordTransformationMethod()
+            // Move cursor to end when visibility is toggled
+            binding.etPassword.setSelection(binding.etPassword.length())
         }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         binding.viewModel = viewModel
 
         binding.etEmailAddress.addTextChangedListener { text: Editable? ->
-            if( text!!.isNotBlank()) {
+            if (text!!.isNotBlank()) {
                 viewModel.checkIfEmailValid(text)
             }
         }
 
-        // TODO listen for events from view model
+        binding.etPassword.addTextChangedListener { text: Editable? ->
+            if (text!!.isNotBlank()) {
+                viewModel.updatePassword(text)
+            }
+        }
+
+        binding.ivShowPassword.setOnClickListener {
+            viewModel.togglePasswordVisibility()
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.events.collect { event ->
                 when (event) {
                     is LoginEvent.ValidationSuccess -> {
-                        Toast.makeText(
-                            requireContext(),
-                            "time to login",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        viewModel.login()
                     }
                     is LoginEvent.ValidationFailed -> {
                         Toast.makeText(
@@ -83,6 +88,21 @@ class LoginFragment : Fragment(), CoroutineScope by MainScope() {
                             event.message,
                             Toast.LENGTH_SHORT
                         ).show()
+                    }
+                    is LoginEvent.LoginFailed -> {
+                        Toast.makeText(
+                            requireContext(),
+                            event.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    is LoginEvent.LoginSucceeded -> {
+                        Toast.makeText(
+                            requireContext(),
+                            "login time",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        // TODO proceed to agenda screen
                     }
                 }
             }
@@ -93,15 +113,4 @@ class LoginFragment : Fragment(), CoroutineScope by MainScope() {
             findNavController().navigate(action)
         }
     }
-
-    fun <T> Fragment.collectLifecycleFlow(flow: Flow<T>, onCollect: suspend (T) -> Unit) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                flow.collectLatest {
-                    onCollect(it)
-                }
-            }
-        }
-    }
-
 }

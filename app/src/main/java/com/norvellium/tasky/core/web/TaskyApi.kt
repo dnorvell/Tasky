@@ -1,6 +1,5 @@
 package com.norvellium.tasky.core.web
 
-import com.norvellium.tasky.BuildConfig
 import com.norvellium.tasky.core.web.response.NetworkResponse
 import com.norvellium.tasky.core.web.response.ResponseError
 import com.norvellium.tasky.auth.data.remote.LoginBody
@@ -14,7 +13,6 @@ interface TaskyApi {
 
     companion object {
         const val BASE_URL = "https://tasky.pl-coding.com/"
-        const val API_KEY = BuildConfig.API_KEY
     }
 
     @POST("register")

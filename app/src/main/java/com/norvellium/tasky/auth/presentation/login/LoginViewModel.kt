@@ -47,7 +47,21 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun login() {
+    fun updatePassword(text: Editable) {
+        _loginState.update {
+            it.copy(
+                password = text.toString(),
+            )
+        }
+    }
+
+    fun togglePasswordVisibility() {
+        _loginState.update {
+            it.copy(isPasswordVisible = !loginState.value.isPasswordVisible)
+        }
+    }
+
+    fun validateLogin() {
         val emailResult = validateEmail.validate(loginState.value.email)
         val passwordResult = validatePassword.validate(loginState.value.password)
 
@@ -55,30 +69,33 @@ class LoginViewModel @Inject constructor(
         val hasError = validationResults.any { it != ValidationResult.SUCCESSFUL }
 
         if (hasError) {
+            _loginState.update { it ->
+                it.copy(errorMessage = resolveErrorMessage(validationResults.first { it != ValidationResult.SUCCESSFUL }))
+            }
             viewModelScope.launch {
                 eventChannel.send(
                     LoginEvent.ValidationFailed(
-                        resolveErrorMessage(validationResults.first { it != ValidationResult.SUCCESSFUL })
+                        loginState.value.errorMessage
                     )
                 )
             }
-        }
-
-        else {
+        } else {
             viewModelScope.launch {
                 eventChannel.send(LoginEvent.ValidationSuccess)
-//            try {
-//                val response = authRepository.login(loginState.value.email, loginState.value.password)
-//                tokenPreferences.writeToken(response.token)
-//                // TODO Save token on success and navigate
-//            }
-//            // TODO additional exception type
-//            catch (e: Exception) {
-//                // TODO handle errors
-//            }
             }
         }
+    }
 
+    fun login() {
+        viewModelScope.launch {
+            try {
+                val response = authRepository.login(loginState.value.email!!, loginState.value.password!!)
+                tokenPreferences.writeToken(response.token)
+                eventChannel.send(LoginEvent.LoginSucceeded)
+            } catch (e: Exception) {
+                eventChannel.send(LoginEvent.LoginFailed(e.message))
+            }
+        }
     }
 
     private fun resolveErrorMessage(validationResult: ValidationResult): String? {

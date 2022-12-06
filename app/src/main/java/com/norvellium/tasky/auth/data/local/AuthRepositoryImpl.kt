@@ -14,7 +14,7 @@ class AuthRepositoryImpl(
         val response = api.login(body)
         return when (response) {
             is NetworkResponse.Success -> response.body
-            is NetworkResponse.ApiError -> throw Exception("$response.body.status $response.body.message")
+            is NetworkResponse.ApiError -> throw Exception(response.body.message)
             is NetworkResponse.NetworkError -> throw  Exception(response.error)
             is NetworkResponse.UnknownError -> throw IOException(response.error)
         }
