@@ -18,6 +18,7 @@
         <action
             android:id="@+id/action_nav_login_to_nav_agenda"
             app:destination="@id/nav_agenda"
+            app:popUpTo="@layout/fragment_login"
             app:popUpToInclusive="true"/>
     </fragment>
 

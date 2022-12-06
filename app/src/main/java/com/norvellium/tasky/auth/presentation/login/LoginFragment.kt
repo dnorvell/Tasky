@@ -105,6 +105,10 @@ class LoginFragment : Fragment(), CoroutineScope by MainScope() {
             }
         }
 
+        binding.btnLogin.setOnClickListener {
+            viewModel.validateLogin()
+        }
+
         binding.llRegister.setOnClickListener {
             val action = LoginFragmentDirections.actionNavLoginToNavRegister()
             findNavController().navigate(action)

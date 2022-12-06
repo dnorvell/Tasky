@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.norvellium.tasky.R
 import com.norvellium.tasky.databinding.FragmentAgendaBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -37,6 +39,8 @@ class AgendaFragment : Fragment(), CoroutineScope by MainScope() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
+            findNavController().popBackStack()
+            findNavController().navigate(R.id.nav_login)
         }
     }
 
