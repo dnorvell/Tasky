@@ -35,8 +35,18 @@ class AuthRepositoryImpl(
     override suspend fun authenticate(token: String): Boolean {
         return when(val response = api.authenticate()) {
             is NetworkResponse.Success -> true
-            is NetworkResponse.ApiError -> throw Exception("$response.body.status $response.body.message")
+            is NetworkResponse.ApiError -> false
             is NetworkResponse.NetworkError -> true // Assume they are authenticated if network error
+            is NetworkResponse.UnknownError -> throw IOException(response.error)
+        }
+    }
+
+    override suspend fun logout() {
+        val response = api.logout()
+        when (response) {
+            is NetworkResponse.Success -> return
+            is NetworkResponse.ApiError -> throw Exception(response.body.message)
+            is NetworkResponse.NetworkError -> throw  Exception(response.error)
             is NetworkResponse.UnknownError -> throw IOException(response.error)
         }
     }

@@ -35,6 +35,9 @@ class AgendaFragment : Fragment(), CoroutineScope by MainScope() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.btnLogout.setOnClickListener {
+            viewModel.logout()
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

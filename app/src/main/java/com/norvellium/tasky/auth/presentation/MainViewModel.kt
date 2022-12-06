@@ -31,7 +31,7 @@ class MainViewModel @Inject constructor(
             tokenPreferences.readToken()?.let { token ->
                 Log.v("test", "authenticating")
                 _isAuthenticated.value = authRepository.authenticate(token)
-                Log.v("test", "authenticated")
+                Log.v("test", "authenticated ${_isAuthenticated.value}")
             }
             _isCheckingAuth.value = false
         }
