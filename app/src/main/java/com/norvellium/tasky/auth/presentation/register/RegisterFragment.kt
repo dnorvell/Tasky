@@ -13,6 +13,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.norvellium.tasky.auth.presentation.login.LoginEvent
 import com.norvellium.tasky.auth.presentation.login.LoginViewModel
 import com.norvellium.tasky.core.presentation.collectLifecycleFlow
@@ -104,7 +105,7 @@ class RegisterFragment : Fragment() {
                             "you may now login",
                             Toast.LENGTH_SHORT
                         ).show()
-                        requireActivity().onBackPressed()
+                        findNavController().popBackStack()
                     }
                 }
             }

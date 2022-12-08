@@ -18,12 +18,10 @@ import androidx.navigation.fragment.findNavController
 import com.norvellium.tasky.core.presentation.collectLifecycleFlow
 import com.norvellium.tasky.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginFragment : Fragment(), CoroutineScope by MainScope() {
+class LoginFragment : Fragment() {
 
     companion object {
         fun newInstance() = LoginFragment()
@@ -62,13 +60,13 @@ class LoginFragment : Fragment(), CoroutineScope by MainScope() {
         binding.viewModel = viewModel
 
         binding.etEmailAddress.addTextChangedListener { text: Editable? ->
-            if (text!!.isNotBlank()) {
+            if (text?.isNotBlank() == true) {
                 viewModel.checkIfEmailValid(text)
             }
         }
 
         binding.etPassword.addTextChangedListener { text: Editable? ->
-            if (text!!.isNotBlank()) {
+            if (text?.isNotBlank() == true) {
                 viewModel.updatePassword(text)
             }
         }
