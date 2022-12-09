@@ -5,7 +5,10 @@ import com.norvellium.tasky.R
 
 class ValidateUsername() {
 
-    fun validate(username: String): ValidationResult {
+    fun validate(username: String?): ValidationResult {
+        if (username.isNullOrBlank()) {
+            return ValidationResult.USERNAME_INVALID
+        }
         // between 4 and 50 characters
         if (username.length !in 4..50) {
             return ValidationResult.USERNAME_INVALID
