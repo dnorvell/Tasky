@@ -88,14 +88,14 @@ class RegisterFragment : Fragment() {
                     is RegisterEvent.ValidationFailed -> {
                         Toast.makeText(
                             requireContext(),
-                            event.message,
+                            event.message?.asString(requireContext()),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                     is RegisterEvent.RegistrationFailed -> {
                         Toast.makeText(
                             requireContext(),
-                            event.message,
+                            event.message?.asString(requireContext()),
                             Toast.LENGTH_SHORT
                         ).show()
                     }

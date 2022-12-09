@@ -84,14 +84,14 @@ class LoginFragment : Fragment() {
                     is LoginEvent.ValidationFailed -> {
                         Toast.makeText(
                             requireContext(),
-                            event.message,
+                            event.message?.asString(requireContext()),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                     is LoginEvent.LoginFailed -> {
                         Toast.makeText(
                             requireContext(),
-                            event.message,
+                            event.message?.asString(requireContext()),
                             Toast.LENGTH_SHORT
                         ).show()
                     }

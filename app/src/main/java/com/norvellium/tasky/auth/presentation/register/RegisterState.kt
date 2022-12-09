@@ -1,5 +1,7 @@
 package com.norvellium.tasky.auth.presentation.register
 
+import com.norvellium.tasky.core.util.UiText
+
 data class RegisterState(
     val username: String? = null,
     val email: String? = null,
@@ -7,5 +9,5 @@ data class RegisterState(
     val isValidUsername: Boolean = false,
     val isValidEmail: Boolean = false,
     val isPasswordVisible: Boolean = false,
-    val errorMessage: String? = null,
+    val errorMessage: UiText? = null,
 )
