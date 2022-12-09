@@ -22,6 +22,9 @@
             app:popUpToInclusive="true"/>
     </fragment>
 
+    <action android:id="@+id/action_global_loginFragment"
+        app:destination="@id/nav_login"/>
+
     <fragment
         android:id="@+id/nav_register"
         android:name="com.norvellium.tasky.auth.presentation.register.RegisterFragment"
@@ -34,6 +37,9 @@
         android:name="com.norvellium.tasky.agenda.presentation.agenda.AgendaFragment"
         android:label="@string/agenda"
         tools:layout="@layout/fragment_agenda">
+        <action
+            android:id="@+id/action_nav_agenda_to_nav_login"
+            app:destination="@id/nav_login" />
     </fragment>
 
 

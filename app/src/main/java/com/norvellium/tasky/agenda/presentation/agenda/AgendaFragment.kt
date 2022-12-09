@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.norvellium.tasky.MobileNavigationDirections
 import com.norvellium.tasky.R
+import com.norvellium.tasky.auth.presentation.login.LoginFragmentDirections
 import com.norvellium.tasky.databinding.FragmentAgendaBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,14 +42,12 @@ class AgendaFragment : Fragment() {
         // This button is just a placeholder to allow logout functionality
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
-//            findNavController().navigate(
-//                R.id.nav_login,
-//                NavOptions.Builder()
-//                    .setPopUpTo(R.id.mobile_navigation, true)
-//                    .build()
-//            )
-            findNavController().popBackStack()
-            findNavController().navigate(R.id.nav_login)
+            findNavController().navigate(
+                MobileNavigationDirections.actionGlobalLoginFragment(),
+                NavOptions.Builder()
+                    .setPopUpTo(R.id.mobile_navigation, true)
+                    .build()
+            )
         }
     }
 
